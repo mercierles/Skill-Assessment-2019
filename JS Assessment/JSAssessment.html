@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8" />
+
+	<title>Form Example</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//Note none of the html has been altered outside of jquery/javascript
+		jQuery(document).ready(function () {
+			fixFormNames();
+			makeQuestion3DDL();
+
+			let progressBar = "<span>Progress: </span><progress id='progressBar' style='width:30%' value='0' max='100'></progress><br/><br />";
+			$(progressBar).insertBefore($("form input[type='submit']"));
+			alterProgressBar($('form'));
+			$("form").change(function (e) {
+				alterProgressBar($('form'));
+			});
+
+			$("form").submit(function (e) {
+				if (!validForm($(this).serializeArray())) {
+					if (!$('#error').length) {
+						$("form").before("<span id='error' style='color:red;'>* REQUIRED</span>");
+					} else {
+						$('#error').show();
+					}
+					e.preventDefault();
+				} else {
+					if ($('#error').length) {
+						$('#error').hide();
+					}
+				}
+			});
+		});
+
+		/**
+		* Validate form, iterate through form validating questions 1 and 2 for non null entries
+		* and question 3 for the correct favorite movie.
+		* @param  {[array]} formInputValues [Array of the form input values]
+		*/
+		function validForm(formInputValues) {
+			var valid = true;
+			$.each(formInputValues, function (id, formInput) {
+				if (id == 0 || id == 1) {
+					if (formInput.value == "") {
+						if (!$('#alert' + id).length) {
+							let alert = "<span id='alert" + id + "' style='color:red;'>*</span>";
+							$(alert).insertAfter($(":input").not("input[type='submit']")[id]);
+						}
+						valid = false;
+					} else {
+						$('#alert' + id).remove();
+					}
+				} else if (id == 2) {
+					if (formInput.value != "Lord of the Rings") {
+						if (!$('#alert' + id).length) {
+							let alert = "<span id='alert" + id + "' style='color:red;'>* Wrong movie selected</span>";
+							$(alert).insertAfter($(":input").not("input[type='submit']")[id]);
+						}
+						valid = false;
+					} else {
+						$('#alert' + id).remove();
+					}
+				}
+			})
+			return valid;
+		}
+
+		/**
+		* Fill and animate a progress bar to show number of empty inputs
+		* @param  {[form]} form [Passing in a JQuery Form element]
+		*/
+		function alterProgressBar(form) {
+			let numberOfNonNullEntries = 0;
+			$.each($(form).serializeArray(), function (id, formInput) {
+				if (formInput.value != "") {
+					numberOfNonNullEntries++;
+				}
+			});
+
+			var animateProgress = setInterval(function () {
+				let max = numberOfNonNullEntries * 25;
+				let progress = $('#progressBar').val();
+				if (progress < max) {
+					progress += 0.5
+					$('#progressBar').val(progress);
+				} else if (progress > max) {
+					progress -= 0.5;
+					$('#progressBar').val(progress);
+				} else {
+					clearInterval(animateProgress);
+				}
+			}, 1);
+		}
+
+		/**
+		* Create and fill a Select list with elements found in the UL of this html
+		*/
+		function makeQuestion3DDL() {
+			let dropdownOptions = "";
+			$('ul li').each(function (li, inner) {
+				if (inner.innerText == 'Hunger Games') {
+					dropdownOptions += '<option selected="true">' + inner.innerText + '</option>'
+				} else {
+					dropdownOptions += '<option>' + inner.innerText + '</option>'
+				}
+			})
+			//Target 3rd question in the form
+			$('form input[type$="text"]')[2].outerHTML = '<select name="movies">' + dropdownOptions + '</select>'
+		}
+
+		/**
+		*Fix form names to match naming convention of question1, question2, question3 etc.
+		*/
+		function fixFormNames() {
+			let lstInputs = $('form input[type$="text"]').serializeArray();
+			let inputCounter = 1;
+			let nameArray = new Array();
+			$.each(lstInputs, function (id, formInput) {
+				if (nameArray.includes(formInput.name)) {
+					let tmpInputName = formInput.name;
+					tmpInputName = tmpInputName.replace(/.$/, inputCounter);
+					$('input[name$="' + formInput.name + '"]')[1].name = tmpInputName;
+					nameArray.push(tmpInputName);
+				} else {
+					nameArray.push(formInput.name);
+				}
+
+				inputCounter++;
+			});
+		}
+	</script>
+	<style>
+		body {
+			background-color: #ccc;
+		}
+
+		#content {
+			margin: 30px;
+			background-color: #fff;
+			padding: 20px 15px;
+			border: 1px solid #999;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="content">
+		<h1>Welcome to the jQuery assessment</h1>
+		<p> We use jQuery to validate that form fields have been filed in. We also use it to “replace” a text field with
+			a drop down of pre-defined choices. </p>
+		<p>For this assessment, add jQuery to validate that the first 2 questions have answers when the submit button is
+			pressed. If not, provide an error message.</p>
+		<p>In addition, please use jQuery to “replace” the input box on question 3 with a drop down containing these 4
+			possible answers:
+			<ul>
+				<li>Star Wars</li>
+				<li>Lord of the Rings</li>
+				<li>Harry Potter</li>
+				<li>Hunger Games</li>
+			</ul>
+		</p>
+
+		<h2>These are a few of my favorite things....</h2>
+		<form action="thankYou.html" method="get">
+			Favorite Song: <input type="text" name="question1"><br /><br />
+			Favorite Color: <input type="text" name="question2"><br /><br />
+			Favorite Movie: <input type="text" name="question2"><br /><br />
+			Favorite Food: <input type="text" name="question2"><br /><br />
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</body>
+
+</html>

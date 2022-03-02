@@ -1,0 +1,303 @@
+/* Index Page - CommonStyles*/
+
+body {
+    font-family: Verdana, Tahoma, sans-serif;
+    /* display: inline-block; */
+    margin: auto;
+    height: 57.5em;
+    width: 85em;
+    box-shadow: 0px 0px 1000px 30px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    font-size: 0.75em;
+}
+
+a {
+    color: white;
+    font-style: normal;
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+}
+
+.shadow {
+    z-index: 100000;
+    box-shadow: 0px 0px 150px 0px rgba(0, 0, 0, 0.5);
+}
+
+.p-default {
+    padding: 1.5em;
+}
+
+.container-33 {
+    padding: 1em;
+    width: 33%;
+}
+
+.left {
+    float: left;
+    text-align: left;
+}
+
+.right {
+    float: right;
+    text-align: right;
+}
+
+.center {
+    text-align: center
+}
+
+.button {
+    margin: 0em 1em;
+    border-radius: 0.1em;
+    background-image: linear-gradient(to top, rgb(43, 116, 152), rgb(113, 180, 204));
+}
+
+/* Header Styles */
+
+.header {
+    font-size: 0.75em;
+    width: 100%;
+    height: 8%;
+    background-color: rgb(37, 37, 37);
+    color: white;
+}
+
+#headerBar {
+    height: 100%;
+}
+
+.searchbar {
+    display: inline-block;
+}
+
+#txtSearch {
+    margin: .2em .5em 0em 0em;
+}
+
+.cart {
+    font-weight: bold;
+    color: black;
+    background-color: rgb(235, 235, 235);
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    padding: 0.5em;
+    margin: 0em 1em 0em 1em;
+}
+
+.cart a {
+    color: black;
+}
+
+span.cart>span:first-of-type {
+    margin-right: 0.5em;
+}
+
+.account-navigation {
+    padding-top: 0.5em;
+}
+
+/* Main Content Header */
+
+.main-content-header {
+    background-image: linear-gradient(to top, rgb(43, 116, 152), rgb(113, 180, 204));
+    height: 25%;
+}
+
+#imgMarquisLogo {
+    padding-top: 2.5em;
+    width: 59.5em;
+    height: 7em;
+}
+
+.superfish {
+    font-size: 0.9em;
+    display: inline-block;
+}
+
+.superfish ul, .superfish ul li {
+    float: none;
+}
+
+/* Body Styles */
+
+.content {
+    float: left;
+    height: 100%;
+    width: 70%;
+}
+
+#mainContent {
+    height: 84%;
+}
+
+#mainContent #marquisCorporateSection {
+    height: 35%;
+    background-image: url("../Images/showerHead.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 60em 17em;
+    color: white;
+}
+
+#mainContent h1 {
+    color: white;
+    margin: 0;
+}
+
+#mainContent>#marquisCorporateSection div.section-title {
+    font-size: 1.5em;
+    color: rgb(113, 180, 204);
+}
+
+#mainContent #featuredProductsSection {
+    height: 40%;
+}
+
+.carousel>ul>li {
+    margin: 2.5em;
+}
+
+.carousel>ul>li>img {
+    width: 8.125em;
+    height: 8.125em;
+}
+
+#mainContent>#featuredProductsSection .title {
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 0.5em;
+}
+
+#mainContent>#featuredProductsSection .basic-carousel {
+    padding: 0em 0em 2.5em 0em;
+}
+
+#mainContent>#featuredProductsSection .basic-carousel .carousel {
+    vertical-align: middle;
+    margin: 0em -0.4em 0em -0.4em;
+    display: inline-block;
+    background-color: rgb(235, 235, 235);
+}
+
+#mainContent>#featuredProductsSection .basic-carousel .carousel.shadow {
+    box-shadow: 3px 3px 20px -5px black;
+}
+
+#mainContent>#featuredProductsSection div.arrow {
+    display: inline-block;
+    padding: 4em 0.95em 4em 0.97em;
+    background-color: rgb(43, 116, 152);
+    clear: both;
+}
+
+#mainContent>#featuredProductsSection img.nav-arrow-right {
+    vertical-align: middle;
+    transform: rotate(180deg);
+}
+
+#mainContent>#featuredProductsSection img.nav-arrow-left {
+    vertical-align: middle;
+}
+
+.page-navigation>a {
+    font-size: 0.9em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+/*CSS Dropdown*/
+
+.dropdown {
+    font-size: 0.9em;
+    padding: 0.5em 2em 1em 2em;
+    color: white;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    top: 2.4em;
+    border-radius: 1em;
+    display: none;
+    position: absolute;
+    background-color: rgb(235, 235, 235);
+    min-width: 9.5em;
+    margin-left: -1.5em;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 0.5em 1em;
+    z-index: 1;
+}
+
+.dropdown-content>a {
+    padding-bottom: 0.5em;
+    display: block;
+    color: black;
+}
+
+.dropdown-content>a:first-of-type {
+    padding-top: 0;
+}
+
+.dropdown-content>a:last-of-type {
+    padding-bottom: 0;
+}
+
+.dropdown-content>a:after {
+    content: "";
+    display: block;
+    padding-top: 0.5em;
+    margin: 0 auto;
+    width: 90%;
+    border-bottom: 1px solid gray;
+}
+
+.dropdown-content>a:last-of-type:after {
+    content: "";
+    border-bottom: none;
+}
+
+.dropdown-content>a:hover {
+    color: rgb(43, 116, 152);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*Gutter Styles*/
+
+.gutter {
+    z-index: -1;
+    position: relative;
+    float: left;
+    height: 100%;
+    width: 15%;
+}
+
+.gutter>.gutter-header, .gutter>.gutter-footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    height: 8%;
+}
+
+.gutter>.gutter-content {
+    height: 84%;
+}
+
+/* Footer Styles */
+
+footer {
+    font-size: 0.75em;
+    width: 100%;
+    background-color: rgb(37, 37, 37);
+    color: white;
+    height: 8%;
+}
+
+.button>a {
+    color: rgb(235, 235, 235);
+}
